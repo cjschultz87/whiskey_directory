@@ -115,20 +115,6 @@ class mainClass
 		Args.Wait();
 		
 		
-		while (directory[directory.Length - 1] == '/' | directory[directory.Length - 1] == '\\')
-		{
-			char[] directoryValArray = directory.ToCharArray();
-			
-			directory = null;
-			
-			for (int c = 0; c < (directoryValArray.Length - 1); c++)
-			{
-				directory += directoryValArray[c];
-			}
-			
-			
-				
-		}
 		
 		
 		if (fIndex.Length == 0 )
@@ -155,11 +141,10 @@ class mainClass
 		
 		
 		startT = DateTime.Now.Ticks;
-
 		
 
 		Array.Resize(ref dirInfo, Directory.GetDirectories(directory).Length);
-			
+		
 		for (int i = 0; i < dirInfo.Length; i++)
 		{
 			dirInfo[i] = Directory.GetDirectories(directory)[i];
@@ -194,8 +179,8 @@ class mainClass
 				);
 			
 			};
-
-		
+			
+			
 		if (recursive == true)
 		{
 			
@@ -210,6 +195,7 @@ class mainClass
 			A1.Wait();
 			
 		}
+		
 		
 		
 		Array.Resize(ref dirInfo, dirInfo.Length + 1);
@@ -246,7 +232,6 @@ class mainClass
 					while (awaitFind == true){};
 					try
 					{
-						
 						dSearch(dirVal, args);
 					}
 					catch (ArgumentNullException)
@@ -309,8 +294,6 @@ class mainClass
 		
 		DF.Wait();
 		//FF.Wait();
-		
-		
 
 		
 		string dString = null;
@@ -505,7 +488,7 @@ class mainClass
 		
 		foreach (int fI in fIndex)
 				{
-					if (dirVal.Substring(dirVal.LastIndexOf('\\', dirVal.Length - dirVal.LastIndexOf('\\'))).ToUpper().Equals(args[fI].ToUpper()) | dirVal.Substring(dirVal.LastIndexOf('\\', dirVal.Length - dirVal.LastIndexOf('\\'))).ToUpper().Contains(args[fI].ToUpper())) 
+					if (dirVal[dirVal.Length - 2] != ':' && (dirVal.Substring(dirVal.LastIndexOf('\\', dirVal.Length - dirVal.LastIndexOf('\\'))).ToUpper().Equals(args[fI].ToUpper()) | dirVal.Substring(dirVal.LastIndexOf('\\', dirVal.Length - dirVal.LastIndexOf('\\'))).ToUpper().Contains(args[fI].ToUpper()))) 
 					/*&& dirVal.IndexOf(args[fI]) == dirVal.Length - args[fI].Length*/
 					//if (dirSubVal.Substring(dirSubVal.LastIndexOf('\\', dirSubVal.Length - dirSubVal.LastIndexOf('\\'))).Contains(args[fI]))
 					//if (dirVal)
